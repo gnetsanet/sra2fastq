@@ -1,0 +1,45 @@
+{
+    "jobDefinitionName": "sratoolkit",
+    "jobDefinitionArn": "arn:aws:batch:us-east-1:XXXXXXXXXXXX:job-definition/sratoolkit:1",
+    "revision": 1,
+    "status": "ACTIVE",
+    "type": "container",
+    "parameters": {},
+    "retryStrategy": {
+        "attempts": 3
+    },
+    "containerProperties": {
+        "image": "ngebremedhin/sratoolkit:latest",
+        "vcpus": 1,
+        "memory": 1024,
+        "command": [],
+        "volumes": [
+            {
+                "host": {
+                    "sourcePath": "/efs"
+                },
+                "name": "references"
+            },
+            {
+                "host": {
+                    "sourcePath": "/home/ec2-user/miniconda"
+                },
+                "name": "aws-cli"
+            }
+        ],
+        "environment": [],
+        "mountPoints": [
+            {
+                "containerPath": "/efs",
+                "sourceVolume": "references"
+            },
+            {
+                "containerPath": "/home/ec2-user/miniconda",
+                "sourceVolume": "aws-cli"
+            }
+        ],
+        "ulimits": [],
+        "resourceRequirements": []
+    }
+}
+
